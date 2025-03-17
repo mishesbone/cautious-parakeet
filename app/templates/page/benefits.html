@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/benefits.css') }}">
+    <style>
+        /* Your CSS styles */
+    </style>
+</head>
+<body>
+    <h2>Benefit</h2>
+    <div class="benefitHtml">
+        <div class="plusDeleteBtn">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fas fa-plus"></i> Add Benefit
+            </button>
+        </div>
+
+        <!-- Benefit Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Benefit</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-container">
+                            <form>
+                                <!-- Your form fields for adding a new benefit -->
+                                <label for="benefitCode">Benefit Code:</label>
+                                <input type="text" id="benefitCode" name="benefitCode" class="form-input" required>
+
+                                <label for="benefitDescription">Benefit Description:</label>
+                                <input type="text" id="benefitDescription" name="benefitDescription" class="form-input" required>
+
+                                <label for="selectOption">Method of Computation:</label>
+                                <select id="selectOption" name="selectOption" class="form-select" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="option1">FIXED AMOUNT</option>
+                                    <option value="option2">PERCENTAGE OF PAYCODE</option>
+                                </select>
+
+                                <div class="fixed-amount" style="display: none;">
+                                    <span class="naira-sign">&#8358;</span>
+                                    <input type="text" id="fixedAmount" name="fixedAmount" placeholder="Enter Fixed Amount">
+                                </div>
+
+                                <div class="percentagePaycode" style="display: none;">
+                                    <label for="percentage">Percentage of Paycode:</label>
+                                    <input type="text" id="percentage" name="percentage" placeholder="Enter Percentage">
+                                    <span class="percentage-sign">%</span>
+
+                                    <label for="payCodeName">PayCode Name:</label>
+                                    <input type="text" id="selectPaycode" />
+
+                                    <table class="selectPaycode">
+                                      <tbody>
+                                          {% for paycode in paycodes %}
+                                          <tr>
+                                              <td>
+                                                  <input type="checkbox" class="checkbox" data-row="{{ paycode.id }}" id="{{ paycode.id }}">
+                                              </td>
+                                              <td>{{ paycode.name }}</td>
+                                          </tr>
+                                          {% endfor %}
+                                      </tbody>
+                                  </table>
+                                  <div class="selectPaycodeDisplay">
+                                    <!-- Include other paycode-related details as needed -->
+                                    <!-- Additional HTML elements or specific details related to paycodes -->
+                                </div>
+
+                                    <!-- Include other paycode-related details as needed -->
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                            <i class="fas fa-times"></i> Close
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save changes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table for displaying Benefits -->
+        <table class="benefitTable">
+            <thead>
+                <tr>
+                    <th>Benefit</th>
+                    <th>Code</th>
+                    <th>Method of Computation</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through benefits data to display in rows -->
+                {% for benefit in benefits %}
+                <tr class="table-cell">
+                    <td>{{ benefit.description }}</td>
+                    <td>{{ benefit.code }}</td>
+                    <td>{{ benefit.method_of_computation }}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ benefit.id }}">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                    </td>
+                    <td>
+                        <form action="{{ url_for('benefits.delete_benefit', company_id=company_id, user_id=user_id, benefit_id=benefit.id) }}" method="POST">
+                            <button type="submit" class="btn btn-danger">
+                                <i class="fas fa-trash"></i> Delete
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <!-- Edit Modals for existing benefits -->
+        {% for benefit in benefits %}
+        <div class="modal fade" id="editModal{{ benefit.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ benefit.id }}" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="editModalLabel{{ benefit.id }}">Edit Benefit</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ url_for('benefits.update_benefit', company_id=company_id, user_id=user_id, benefit_id=benefit.id) }}" method="POST">
+                        <div class="modal-body">
+                            <!-- Form fields for editing the benefit -->
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script src="{{ url_for('static', filename='js/benefits.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/benefits.js') }}"></script>
+    <script>
+
+      $(document).ready(function () {
+        $("button[type='submit']").on("click", function () {
+          $("form").submit(); // Trigger the form submission
+        });
+      });
+      
+      </script>
+
+</body>
+</html>

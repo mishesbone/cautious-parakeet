@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logout</title>
+    <!-- Add your CSS and JS links here if necessary -->
+</head>
+<body>
+    <h1>Logout</h1>
+    <p>Are you sure you want to log out, {{ current_user.username }}?</p>
+    
+    <form method="post" action="{{ url_for('auth.logout') }}">
+        <input type="submit" value="Logout">
+    </form>
+    
+    <a href="{{ url_for('dashboard.user_dashboard', user_id=current_user.id) }}">Return to User Dashboard</a>
+</body>
+</html>

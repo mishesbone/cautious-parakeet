@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/deductions.css') }}">
+</head>
+<body>
+    <div class="deductionHtml">
+        <div class="plusDeleteBtn">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fas fa-plus"></i> Add Deduction
+            </button>
+        </div>
+
+        <!-- Add Deduction Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Deduction</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="{{ url_for('deductions.add_deduction', company_id=company_id, user_id=user_id) }}" method="POST">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="deductionCode">Deduction Code:</label>
+                                <input type="text" id="deductionCode" name="code" class="form-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="deductionDescription">Deduction Description:</label>
+                                <input type="text" id="deductionDescription" name="description" class="form-input" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="selectOption">Method of Computation:</label>
+                                <select id="selectOption" name="selectOption" class="form-select" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="Fixed Amount">FIXED AMOUNT</option>
+                                    <option value="Percentage of Paycode">PERCENTAGE OF PAYCODE</option>
+                                </select>
+                            </div>
+                            <div class="form-group fixed-amount" style="display: none">
+                                <span class="naira-sign">&#8358;</span>
+                                <input type="text" id="fixedAmount" name="fixed-amount" placeholder="Enter Fixed Amount"/>
+                            </div>
+                            <div class="form-group percentagePaycode" style="display: none">
+                                <label for="percentage">Percentage of Paycode:</label>
+                                <input type="text" id="percentage" name="percentage" placeholder="Enter Percentage" />
+                                <span class="percentage-sign">%</span>
+                                <div class="checkBx"></div>
+                                <label for="payCodeName">PayCode Name:</label>
+                                <input type="text" id="selectPaycode" />
+                                <table class="selectPaycode">
+                                    <thead>
+                                        <tr>
+                                            <th>PayCode</th>
+                                            <th>Code</th>
+                                            <th>Description</th>
+                                            <th>Method of Computation</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for paycode in paycodes %}
+                                            <tr>
+                                                <td>{{ paycode.name }}</td>
+                                                <td>{{ paycode.code }}</td>
+                                                <td>{{ paycode.description }}</td>
+                                                <td>{{ paycode.method_of_computation }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Add Deduction</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Deduction Modals -->
+        {% for deduction in deductions %}
+            <div class="modal fade" id="editModal{{ deduction.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ deduction.id }}" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="editModalLabel{{ deduction.id }}">Edit Deduction</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form action="{{ url_for('deductions.update_deduction', company_id=company_id, user_id=user_id, deduction_id=deduction.id) }}" method="POST">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="editDescription{{ deduction.id }}">Deduction Description:</label>
+                                    <input type="text" id="editDescription{{ deduction.id }}" name="edit_description" value="{{ deduction.description }}" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editCode{{ deduction.id }}">Deduction Code:</label>
+                                    <input type="text" id="editCode{{ deduction.id }}" name="edit_code" value="{{ deduction.code }}" class="form-input" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editMethod{{ deduction.id }}">Method of Computation:</label>
+                                    <input type="text" id="editMethod{{ deduction.id }}" name="edit_method" value="{{ deduction.method_of_computation }}" class="form-input" required>
+                                </div>
+                                <!-- Add additional form fields if needed -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <!-- Table for displaying deductions -->
+        <table class="deductionTable">
+            <thead>
+                <tr>
+                    <th>Deduction</th>
+                    <th>Code</th>
+                    <th>Method of Computation</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for deduction in deductions %}
+                    <tr class="table-cell">
+                        <td>{{ deduction.description }}</td>
+                        <td>{{ deduction.code }}</td>
+                        <td>{{ deduction.method_of_computation }}</td>
+                        <td>
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ deduction.id }}">
+                                <i class="fas fa-edit"></i> Edit
+                            </button>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('deductions.delete_deduction', company_id=company_id, user_id=user_id, deduction_id=deduction.id) }}" method="POST">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/deductions.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

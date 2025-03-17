@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Payment Canceled</title>
+</head>
+<body>
+    <header class="header">
+        <a href="{{url_for('auth.index')}}" class="logo">PAYROLL</a>
+        <!-- nav links -->
+        <nav class="navbar">
+            <a href="/">home</a>
+            <a href="{{url_for('main.about')}}">about</a>
+            <a href="{{url_for('main.partners')}}">partners</a>
+            <a href="{{url_for('main.pricing')}}">pricing</a>
+            <a href="{{url_for('main.contact')}}">contact</a>
+        </nav>
+        <a href="{{url_for('auth.signin')}}" class="btn">sign in</a>
+    </header>
+
+    <div class="cancel-page">
+        <h2>Payment Canceled</h2>
+        <p>Your payment has been canceled.</p>
+        <a href="{{ url_for('auth.index') }}" class="btn">Back to Dashboard</a>
+    </div>
+</body>
+</html>

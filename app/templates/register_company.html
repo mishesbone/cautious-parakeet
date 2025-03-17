@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>register company</title>
+</head>
+<body class="register">
+    <div>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul class="flash">
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+    </div>
+    
+    <header class="header">
+        <a href="{{url_for('auth.index')}}" class="logo">PAYROLL</a>
+        <!-- nav links -->
+        <nav class="navbar">
+            <a href="/">home</a>
+            <a href="{{url_for('main.about')}}">about</a>
+            <a href="{{url_for('main.partners')}}">partners</a>
+            <a href="{{url_for('main.pricing')}}">pricing</a>
+            <a href="{{url_for('main.contact')}}">contact</a>
+        </nav>
+        {% if current_user.is_authenticated %}
+    <a href="{{ url_for('auth.logout') }}" class="btn">Log Out</a>
+        {% else %}
+            <a href="{{ url_for('auth.signin') }}" class="btn">Sign In</a>
+        {% endif %}
+
+    </header>
+            
+            <div class="register-company-form">
+              <h2>Register Company</h2>
+              <form action="{{ url_for('auth.register_company', user_id=user_id) }}" method="POST" id="register-company-form">
+                  {{ form.hidden_tag() }} <!-- Include the CSRF token -->
+      
+                  <div class="form-group">
+                      <label for="companyName">Company Name:</label>
+                      {{ form.name(class="form-control", id="companyName") }}
+                  </div>
+
+                  <div class="form-group">
+                    <label for="businessEmail">Business Email:</label>
+                    {{ form.business_email(class="form-control", id="businessEmail") }}
+                </div>
+
+                  <div class="form-group">
+                      <label for="numEmployees">Number of Employees:</label>
+                      {{ form.num_employees(class="form-control", id="numEmployees") }}
+                  </div>
+                  
+                  <div class="form-group">
+                      <label for="paymentMethod">Method of Payment:</label>
+                      {{ form.payment_method(class="form-control", id="paymentMethod") }}
+                  </div>
+                  
+                  <!-- Add a wrapper div with the ID 'paymentGroup' -->
+                  <div id="paymentGroup" class="form-group" style="display: none;">
+                      <!-- Include your payment proof-related elements here -->
+                      <label for="paymentProof">Payment Proof (Image or Screenshot):</label>
+                      {{ form.payment_proof(class="form-control", id="paymentProof") }}
+                  </div>
+                  
+                  <!-- Add a submit button here -->
+                  <button type="submit" class="btn btn-primary">Sign Up</button>
+              </form>
+          </div>
+    
+            <!-- number of employee functionality -->
+            
+ 
+           
+            <script>
+              document.addEventListener("DOMContentLoaded", function() {
+                  // Number of employees functionality
+                  const numEmployeesTextarea = document.getElementById("numEmployees");
+                  const numOfEmployeeDiv = document.querySelector(".numOfEmployee");
+                  const checkboxes = document.querySelectorAll("input[type='checkbox']");
+                  
+                  numEmployeesTextarea.addEventListener("click", toggleNumOfEmployeeDiv);
+                  checkboxes.forEach(checkbox => checkbox.addEventListener("change", updateNumOfEmployees));
+          
+                  // Payment method and proof functionality
+                  const paymentMethodSelect = document.getElementById('paymentMethod');
+                  const paymentProofGroup = document.getElementById('paymentGroup');
+                  const attachFileInput = document.getElementById('paymentProof');
+          
+                  // Initial check for the payment method value on page load
+                  checkPaymentMethod(paymentMethodSelect);
+          
+                  paymentMethodSelect.addEventListener('change', function() {
+                      checkPaymentMethod(this);
+                  });
+          
+                  function checkPaymentMethod(select) {
+                      if (select.value === 'credit_card') {
+                          paymentProofGroup.style.display = 'none';
+                          attachFileInput.removeAttribute('required'); // Remove 'required' attribute
+                      } else {
+                          paymentProofGroup.style.display = 'block';
+                          attachFileInput.setAttribute('required', 'required'); // Add 'required' attribute
+                      }
+                  }
+          
+                  // Payment method interactions
+                  const paymentMethodTextarea = document.getElementById("paymentMethod");
+                  const paymentDiv = document.querySelector(".payment");
+                  const makePaymentButton = document.querySelector(".btn0");
+          
+                  paymentMethodTextarea.addEventListener("click", togglePaymentDiv);
+                  makePaymentButton.addEventListener("click", handleMakePayment);
+                  attachFileInput.addEventListener("change", handleFileAttachment);
+          
+                  function togglePaymentDiv() {
+                      paymentDiv.style.display = (paymentDiv.style.display === "none" || !paymentDiv.style.display) ? "block" : "none";
+                  }
+          
+                  function handleMakePayment(e) {
+                      e.preventDefault();
+                      const makePaymentText = makePaymentButton.textContent;
+                      paymentMethodTextarea.value += makePaymentText + " ";
+                      paymentDiv.style.display = "none";
+                  }
+          
+                  function handleFileAttachment() {
+                      const attachFileText = attachFileInput.value.split(/\\|\//).pop(); // Get the file name from the input
+                      paymentMethodTextarea.value += attachFileText + " ";
+                      paymentDiv.style.display = "none";
+                  }
+          
+                  function toggleNumOfEmployeeDiv() {
+                      numOfEmployeeDiv.style.display = (numOfEmployeeDiv.style.display === "none") ? "block" : "none";
+                  }
+          
+                  function updateNumOfEmployees() {
+                      const selectedValues = Array.from(checkboxes)
+                          .filter(cb => cb.checked)
+                          .map(cb => cb.value);
+                      numEmployeesTextarea.value = selectedValues.join(", ");
+                      numOfEmployeeDiv.style.display = "none";
+                  }
+              });
+          </script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+          
+
+
+</body>
+</html>

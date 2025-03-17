@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!--=========== STYLESHEET ========-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin.css') }}">
+    <title>admin </title>
+</head>
+
+<body>
+
+
+    <!--=========== Navigation ========-->
+    <div class="">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <a href="#">
+                        <span class="icon"><ion-icon name="cloud-upload-outline"></ion-icon></span>
+                        <span class="title">Payroll</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('dashboard.dashboard_view', company_id=company_id, user_id=user_id)}}" id="dashboardLink">
+                        <span class="icon"><ion-icon name="home-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('employee_card.employee_card', company_id=company_id, user_id=user_id)}}" id="employeeCardLink">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Employee card</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('departments.departments', company_id=company_id, user_id=user_id)}}" id="departmentLink">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Department</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('positions.positions', company_id=company_id, user_id=user_id)}}" id="positionLink">
+                        <span class="icon"><ion-icon name="people-outline"></ion-icon></span>
+                        <span class="title">Position</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('pay_code.paycode', company_id=company_id, user_id=user_id)}}" id="paycodeLink">
+                        <span class="icon"><ion-icon name="pricetags-outline"></ion-icon></span>
+                        <span class="title">Pay code</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('salary_scale.salary_scale', company_id=company_id, user_id=user_id)}}" id="salaryScaleLink">
+                        <span class="icon"><ion-icon name="scale-outline"></ion-icon></span>
+                        <span class="title">Salary Scale</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('deductions.deductions', company_id=company_id, user_id=user_id)}}" id="deductionsLink">
+                        <span class="icon"><ion-icon name="pencil-outline"></ion-icon></span>
+                        <span class="title">Deductions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('benefits.benefits', company_id=company_id, user_id=user_id)}}" id="benefitsLink">
+                        <span class ="icon"><ion-icon name="gift-outline"></ion-icon></span>
+                        <span class="title">Benefits</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('monthly_payroll.monthly_payroll', company_id=company_id, user_id=user_id)}}" id="monthlyPayrollLink">
+                        <span class="icon"><ion-icon name="calendar-number-outline"></ion-icon></span>
+                        <span class="title">Monthly Payroll</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('pay_slips.pay_slips', company_id=company_id, user_id=user_id)}}" id="payslipsLink">
+                        <span class="icon"><ion-icon name="document-outline"></ion-icon></ion-icon></span>
+                        <span class="title">Pay Slips</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('payroll_reporting.payroll_reporting', company_id=company_id, user_id=user_id)}}" id="payrollReportingLink">
+                        <span class="icon"><ion-icon name="clipboard-outline"></ion-icon></span>
+                        <span class="title">Payroll Reporting</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" data-content-url="{{url_for('settings.settings', company_id=company_id, user_id=user_id)}}" id="settings">
+                        <span class="icon"><ion-icon name="settings-outline"></ion-icon></span>
+                        <span class="title">Settings</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+
+                <div class="user">
+                    <span>admin</span><img src="{{ url_for('static', filename='img/testimonials-1.jpg') }}" alt="">
+                </div>
+            </div><!-- topBar -->
+
+            <div id="content">
+                
+            </div>
+
+
+
+
+
+    <!--MAIN SECTION-->
+
+
+
+
+
+
+
+
+            
+            <!--=========== closing tag of the main div ========-->
+        </div>
+        <!--=========== closing tag of the container div ========-->
+    </div>
+
+    <!--=========== admin js ========-->
+    <script src="{{ url_for('static', filename='js/employee_info.js') }}"></script>
+   
+    
+    <!-- Include your custom JavaScript files at the end -->
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/ad.js') }}"></script>
+  
+    
+    <!--========= ionicon =========-->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
+        
+
+    

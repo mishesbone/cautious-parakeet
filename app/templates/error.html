@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error Page</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Error Page</h1>
+        
+        <!-- Display error messages -->
+        <div class="alert alert-danger">
+            <strong>Error:</strong>
+            <ul>
+                {% for message in get_flashed_messages(category_filter="error") %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        
+        <!-- Display info messages -->
+        <div class="alert alert-info">
+            <strong>Info:</strong>
+            <ul>
+                {% for message in get_flashed_messages(category_filter="info") %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <!-- Display settings-related errors -->
+        <div class="alert alert-warning">
+            <strong>Settings Error:</strong>
+            <ul>
+                {% for message in get_flashed_messages(category_filter="settings_error") %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!-- Display success messages -->
+        <div class="alert alert-success">
+            <strong>Success:</strong>
+            <ul>
+                {% for message in get_flashed_messages(category_filter="success") %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+</body>
+</html>

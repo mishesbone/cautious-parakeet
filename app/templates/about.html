@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payroll Management System - About</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <a href="{{ url_for('auth.index') }}">home</a>
+        <a href="{{ url_for('main.about') }}">about</a>
+        <a href="{{ url_for('main.partners') }}">partners</a>
+        <a href="{{ url_for('main.pricing') }}">pricing</a>
+        <a href="{{ url_for('main.contact') }}">contact</a>
+    </nav>
+    
+    <!-- About Content -->
+    <h1>About Us</h1>
+    <p>We are a leading provider of payroll management solutions.</p>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2023 Ascentree. All rights reserved.
+    </footer>
+
+</body>
+</html>

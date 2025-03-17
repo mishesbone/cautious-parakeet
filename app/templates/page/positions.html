@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/positions.css') }}">
+</head>
+<body>
+    <div class="createpositions">
+        <div class="header1">
+            <h1>List of Positions</h1>
+            <div class="plusDeleteBtn">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <i class="fas fa-plus"></i> <!-- Plus icon -->
+                </button>
+            </div>
+        </div>
+
+       <!-- Add New Position Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add New Position</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Form for adding a new position -->
+                        <form method="POST" action="{{ url_for('positions.add_position', company_id=company_id,user_id=user_id) }}">
+                            <div class="mb-3">
+                                <label for="positionName" class="form-label">Position Name:</label>
+                                <input type="text" class="form-control" id="positionName" name="positionName" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="positionDescription" class="form-label">Position Description:</label>
+                                <input type="text" class="form-control" id="positionDescription" name="positionDescription">
+                            </div>
+                            <!-- Additional input fields or selections for the new position -->
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Position</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Position Code</th>
+                    <th>Position Name</th>
+                    <th>Department Description</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody id="positionTable">
+                {% for position in positions %}
+                    <tr class="table-cell">
+                        <td>{{ position.id }}</td>
+                        <td>{{ position.name }}</td>
+                        <td>{{ position.description }}</td>
+                        <td>
+                            <!-- Edit Button -->
+                            <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ position.id }}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                        <td>
+                            <!-- Delete Button -->
+                            <form method="POST" action="{{ url_for('positions.delete_position', user_id=user_id, company_id=company_id, position_id=position.id) }}">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                   <!-- Edit Position Modal -->
+                    <div class="modal fade" id="editModal{{ position.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ position.id }}" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="editModalLabel{{ position.id }}">Edit Position</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Form for editing the position -->
+                                    <form method="POST" action="{{ url_for('positions.edit_position', user_id=user_id, company_id=company_id,position_id=position.id) }}">
+                                        <label for="editedName{{ position.id }}">Position Name:</label>
+                                        <input type="text" id="editedName{{ position.id }}" name="edited_name" value="{{ position.name }}" class="form-control" required>
+                                        <!-- Additional input fields for editing other information -->
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="{{ url_for('static', filename='js/positions.js') }}"></script>
+</body>
+</html>
+
+

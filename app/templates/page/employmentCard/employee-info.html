@@ -1,0 +1,108 @@
+<div class="employee-info">
+  <form action="{{ url_for('employee_card.add_employee', company_id=company_id,user_id=user_id) }}" method="POST">
+      <div class="form-group">
+          <div>
+              <label for="employeeName">Employee Name:</label>
+              <input type="text" id="employeeName" name="name" required>
+          </div>
+          <div>
+              <label for="Gender">Gender:</label>
+              <div class="rw">
+                  <div class="row">
+                      <label class="label" for="male">Male:</label>
+                      <input type="radio" id="male" name="gender" value="Male">   
+                  </div>
+                  <div class="row">
+                      <label class ="label" for="female">Female:</label>
+                      <input type="radio" id="female" name="gender" value="Female">
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+      <div class="form-group">
+          <div>
+              <label for="employeeID">Employee ID:</label>
+              <input type="text" id="employeeID" name="employeeID" required>
+          </div>
+          <div>
+              <label for="dob">Date of Birth:</label>
+              <input type="date" id="dob" name="date_of_birth" required>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <div>
+              <label for="email">Employee Email:</label>
+              <input type="email" id="email" name="email" required>
+          </div>
+          <div>
+              <label for="phone">Phone Number:</label>
+              <input type="tel" id="phone" name="phone_num" required>
+          </div>
+      </div>
+
+      <hr>
+
+      <div class="form-group">
+          <div>
+              <label for="address">Address:</label>
+              <input type="text" id="address" name="address" required>
+          </div>
+          <div>
+              <label for="city">City:</label>
+              <input type="text" id="city" name="city" required>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <div>
+              <label for="postal">Postal Code:</label>
+              <input type="text" id="postal" name="postal_code" required>
+          </div>
+          <div>
+              <label for="country">Country:</label>
+              <input type="text" id="country" name="country" required>
+          </div>
+      </div>
+
+      <hr>
+
+      <h3>Next Of Kin</h3>
+
+      <div class="form-group">
+          <div>
+              <label for="nextOfKin">Next of Kin:</label>
+              <input type="text" id="nextOfKin" name="nextOfKin" required>
+          </div>
+          <div>
+              <label for="kinPhone">Phone Number:</label>
+              <input type="tel" id="kinPhone" name="kinPhone" required>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <div>
+              <label for="relationship">Relationship:</label>
+              <input type="text" id="relationship" name="relationship" required>
+          </div>
+          <div>
+              <label for="kinEmail">Email:</label>
+              <input type="email" id="kinEmail" name="kinEmail" required>
+          </div>
+      </div>
+
+      <button type="submit">Add Employee</button>
+  </form>
+</div>
+<body>
+    <!-- Your HTML content -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("button[type='submit']").on("click", function () {
+                $("form").submit(); // Trigger the form submission
+            });
+        });
+    </script>
+</body>

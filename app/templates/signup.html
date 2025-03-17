@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <title>Sign Up</title>
+    
+</head>
+<body class="signup">
+    
+
+    <header class="header">
+        
+        <a href="{{ url_for('auth.index') }}" class="logo">PAYROLL</a>
+        <!-- nav links -->
+        <nav class="navbar">
+            <a href="{{ url_for('auth.index') }}">home</a>
+            <a href="{{ url_for('main.about') }}">about</a>
+            <a href="{{ url_for('main.partners') }}">partners</a>
+            <a href="{{ url_for('main.pricing') }}">pricing</a>
+            <a href="{{ url_for('main.contact') }}">contact</a>
+        </nav>
+        
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('auth.signin') }}" class="btn">sign in</a>
+        {% else %}
+            <!-- You can display a different message or menu options for authenticated users here -->
+            <a href="{{ url_for('dashboard.user_dashboard, user_id=user_id') }}" class="btn">sign out</a>
+            {% endif %}
+    </header>
+
+    {% if not current_user.is_authenticated %}
+    <div class="signup-form">
+        <!-- Display flash messages -->
+        <div>
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for message in messages %}
+                        <li class="flash-message">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% endwith %}
+            </div>
+            
+        <h2>Sign Up</h2>
+        <form action="{{ url_for('auth.signup') }}" method="POST" id="signup-form" onsubmit="submitForm(event)">
+
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="full-name" name="name" required>
+            </div>
+            <!-- Add a hidden input field for user_id -->
+            <input type="hidden" name="user_id" value="{{ user_id }}">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" name="confirm_password" required>
+            </div>
+            <div class="form-group box">
+                <input class="input" type="checkbox" id="terms" name="agree_to_terms" required>
+                <label class="flex" for="terms"><a href="{{ url_for('main.terms_and_conditions') }}">I agree to the Terms and Conditions</a></label>
+            </div>
+            <button type="submit">Sign Up</button>
+        </form>
+        
+        
+    </div>
+    {% else %}
+    <div class="signed-in-message">
+        <p>You are already signed in as {{ current_user.name }}.</p>
+        <!-- You can display additional information or actions for authenticated users here -->
+    </div>
+    {% endif %}
+    <div id="error-message" class="error-message"></div>
+
+</body>
+
+</html>

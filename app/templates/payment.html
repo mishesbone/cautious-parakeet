@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-3">Stripe Payment</h1>
+        <p>Please enter your credit card details to proceed with your company registration.</p>
+        
+        <form method="POST" action="/process_payment">
+            <div class="form-group">
+                <label for="card_number">Card Number</label>
+                <input type="text" class="form-control" id="card_number" name="card_number" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="expiry_date">Expiry Date</label>
+                <input type="text" class="form-control" id="expiry_date" name="expiry_date" placeholder="MM/YY" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="cvv">CVV</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" required>
+            </div>
+            
+            <!-- Button group for "Cancel Payment" and "Submit Payment" -->
+            <div class="btn-group">
+                <button type="button" class="btn btn-secondary mr-2" id="cancelPayment">Cancel Payment</button>
+                <button type="submit" class="btn btn-primary">Submit Payment</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Include Stripe.js library -->
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Stripe with your publishable key
+            var stripe = Stripe('pk_test_51NfBipDjqt0tSwndxZeRkCcmHI53j7gjlQQLVQOZhgsBL2r9iHpbdM8EFgmvOy3Ok31SvaKU7dPHfRtUdIJqEwwh00R2m4VClB');
+
+            // Handle form submission
+            var form = document.querySelector('form');
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Disable the submit button to prevent multiple clicks
+                form.querySelector('button').disabled = true;
+
+                // Create a payment method using the card details from the form
+                stripe.createPaymentMethod({
+                    type: 'card',
+                    card: {
+                        number: document.getElementById('card_number').value,
+                        exp_month: document.getElementById('expiry_date').value.split('/')[0],
+                        exp_year: document.getElementById('expiry_date').value.split('/')[1],
+                        cvc: document.getElementById('cvv').value
+                    }
+                }).then(function(result) {
+                    // Handle the payment method creation result
+                    if (result.error) {
+                        // Display an error message to the user
+                        var errorElement = document.createElement('div');
+                        errorElement.className = 'alert alert-danger mt-3';
+                        errorElement.textContent = result.error.message;
+                        form.appendChild(errorElement);
+                    } else {
+                        // If payment method is created successfully, send the payment method ID to the server
+                        fetch('/process_payment', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ payment_method_id: result.paymentMethod.id }),
+                        }).then(function(response) {
+                            return response.json();
+                        }).then(function(result) {
+                            // Handle the response from the server
+                            if (result.success) {
+                                // Payment successful, show a success message to the user
+                                alert('Payment successful!');
+                            } else {
+                                // Payment failed, display an error message
+                                alert('Payment failed. Please try again.');
+                            }
+                        });
+                    }
+                });
+            });
+        });
+        // Add JavaScript for the "Cancel Payment" button
+        var cancelPaymentButton = document.getElementById('cancelPayment');
+        cancelPaymentButton.addEventListener('click', function() {
+            // Implement the desired behavior when the "Cancel Payment" button is clicked
+            alert('Payment canceled.');
+            // You can add more code here to handle the cancelation as needed
+            window.location.href = 'register_company';
+        });
+   
+    </script>
+</body>
+</html>

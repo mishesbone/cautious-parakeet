@@ -1,0 +1,816 @@
+/* ======== Google Fonts ======== */
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap');
+
+/* ======== Globals ======== */
+*{
+    font-family: 'Ubuntu', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+   --main: #27374D;
+   --white:#fff;
+   --gray: #f5f5f5;
+   --black1:#222;
+   --black2: #999;
+}
+body{
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.container{
+    position: relative;
+    width: 100%;
+}
+
+/* ======== Navigation ======== */
+
+.navigation{
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    background: var(--main);
+    border-left: 2px solid var(--main);
+    transition: 0.5s;
+    overflow:scroll;
+    box-sizing: border-box;
+}
+.navigation.active{
+    width: 160px;
+}
+.navigation ul{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.navigation ul li{
+    position: relative;
+    width: 100%;
+    list-style: none;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.navigation ul li:hover, .navigation ul li.hovered{
+    background-color:  var(--white);
+}
+
+.navigation ul li:nth-child(1){
+    margin-bottom: 20px;
+    pointer-events: none;
+}
+.navigation ul li:nth-child(10){
+    margin-top: 30px;
+    pointer-events: none;
+    border-top: 1px solid var(--white);
+    border-radius: 0;
+}
+.navigation ul li:nth-child(10):hover{
+   font-weight: 600;
+}
+.navigation ul li a{
+    
+    position: relative;
+    display: block;
+    width: 100%;
+    display: flex;
+    text-decoration: none;
+    color: var(--white);
+}
+
+.navigation ul li:hover a,.navigation ul li.hovered a
+{
+    color: var(--main);
+}
+
+.navigation ul li a .icon{
+    position: relative;
+    display: block;
+    min-width: 60px;
+    height: 60px;
+    line-height: 75px;
+    text-align: center;
+}
+.navigation ul li a .icon ion-icon{
+    font-size: 1.75rem;
+}
+.navigation ul li a .title{
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: start;
+    white-space: nowrap;
+}
+/* ======== Curve Outside ======== */
+.navigation ul li:hover a::before,.navigation ul li.hovered a::before{
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px 35px 0 10px var(--white);
+    pointer-events: none;
+}
+.navigation ul li:hover a::after,
+.navigation ul li.hovered a::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: -50px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    border-radius: 50%;
+    box-shadow: 35px -35px 0 10px var(--white);
+    pointer-events: none;
+}
+
+/* ======== main styling ======== */
+.main{
+    position: absolute;
+    width: calc(100% - 300px);
+    left: 300px;
+    min-height: 100vh;
+    background-color: #E8E8E8;
+    transition: 0.5s;
+}
+.main.active{
+    width: calc(100% - 80px);
+    left: 80px;
+}
+.topbar{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    border-left: 1px solid #6a84a876;
+    background: var(--main);
+}
+.toggle{
+    color: #fff;
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+.search{
+    position: relative;
+    width: 250px;
+    margin: 0 10px;
+    left: -20%;
+}
+.search label{
+    position: relative;
+    width: 100%;
+}
+.search label input {
+    width: 100%;
+    height: 40px;
+    padding: 5px 0;
+    padding-left: 35px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid var(--white);
+    background: transparent;
+  }
+  .search label input::placeholder {
+    color: var(--white); 
+    text-align: left;
+  }
+  
+.search label ion-icon{
+    color: var(--white);
+    position: absolute;
+    top: 25%;
+    left: 85%;
+    font-size: 1.2rem;
+}
+.user{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+.user img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* ======== Card styling ======== */
+
+  
+.active {
+    display: block;
+    /* Add styles for the active section */
+  }
+  
+
+
+.cardBox{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 30px;
+}
+.cardBox .card{
+    position: relative;
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow:  0 7px 25px rgba(0, 0, 0, 0.08);
+}
+.cardBox .card .numbers{
+    position: relative;
+    font-weight: 500;
+    font-size: 2.5rem;
+    color: var(--main);
+}
+.cardBox .card .cardName{
+    color: var(--black1);
+    font-size: 1.1rem;
+    margin-top: 5px;
+}
+.cardBox .card .iconBx{
+    font-size: 3.5rem;
+    color: var(--black2); 
+}
+.cardBox .card:hover {
+    background: var(--main);
+}
+.cardBox .card:hover .numbers,
+.cardBox .card:hover .cardName,
+.cardBox .card:hover .iconBx{
+    color: var(--white);
+}
+
+/* ======== Recent Order styling ======== */
+
+.details{
+    position: relative;
+    width: 100%;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 30px;
+    margin-top: 10px;
+}
+
+.details .recentOrders{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    background: var(--white);
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+.details .cardHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.cardHeader h2{
+    font-weight: 600;
+    color: var(--main);
+}
+.cardHeader .btn{
+    position: relative;
+    padding: 5px 10px;
+    background: var(--main);
+    text-decoration: none;
+    color: var(--white);
+    border-radius: 6px;
+}
+ .details table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+ }
+ .details table thead td{
+    font-weight: 600;
+ }
+ .details .recentOrders table tr{
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+ }
+ .details .recentOrders table tr:last-child{
+    border-bottom: none;
+ }
+ .details .recentOrders table tbody .table-cell:hover{
+    background: var(--main);
+    color: var(--white);
+ }
+ .details .recentOrders table tr td{
+    padding: 10px;
+ }
+ .details .recentOrders table tr td:last-child{
+    text-align: end;
+ }
+ .details .recentOrders table tr td:nth-child(2){
+    text-align: end;
+ }
+ .details .recentOrders table tr td:nth-child(3){
+    text-align: center;
+ }
+ .status.delivered{
+    padding: 2px 4px;
+    background: #8de02c;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+ }
+ .status.pending{
+    padding: 2px 4px;
+    background: #f9ca3f;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+ }
+ .status.return{
+    padding: 2px 4px;
+    background: #f00;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+ }
+ .status.progress{
+    padding: 2px 4px;
+    background: #2cb0e0;
+    color: var(--white);
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+ }
+ 
+/* ======== New Customers styling ======== */
+.recentCustomers{
+    position: relative;
+    display: grid;
+    min-height: 500px;
+    padding: 20px;
+    box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+.recentCustomers .imgBx{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    overflow: hidden;
+}
+.recentCustomers .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.recentCustomers table tr td{
+    padding: 12px 10px;
+}
+.recentCustomers table tr td h4{
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
+.recentCustomers table tr td span{
+    font-size: 14px;
+    color: var(--black2);
+}
+.recentCustomers table .table-cell:hover{
+    background: var(--main);
+    color: var(--white);
+}
+.recentCustomers table tr:hover td h4 span{
+    color: var(--white);
+}
+
+
+/* ======== EmployeeCard styling ======== */
+.employeeCard{
+    padding: 2rem 6rem 0 5rem;
+}
+.employeeCard .table{
+    background-color: #fff;
+    border-radius: 2rem;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+} 
+.employeeCard .table thead td{
+    padding: 1rem 1.3rem;
+    font-weight: 600;
+}
+.employeeCard .table-cell{
+    color: var(--black1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+ .employeeCard .table .table-cell:last-child{
+    border-bottom: none;
+}
+.employeeCard .table tbody .table-cell:hover{
+    background: var(--main);
+    color: var(--white);
+ }
+ .employeeCard .table .table-cell td{
+    padding: 10px;
+ }
+ .employeeCard .flexbx{
+    display: flex;
+    justify-content: space-between;
+ }
+ /* ========= AddEmployeeForm Styling ===========*/         
+.employeeCard form .table1 {
+    display: flex;         
+    justify-content: space-between;
+    align-items: center; 
+  }
+
+  .employeeCard form .table1 .td {
+     
+    background-color: var(--main);
+    color: var(--white);
+    font-size: 1.2rem;
+    border-radius: .6rem;
+    padding: .7rem 2.5%; 
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .employeeCard form .table1 .td a{
+    text-decoration: none;
+    color: #fff;
+  }
+  .active{
+    background-color: none;
+    color: var(--main);
+  }
+  #E-info:target .active,
+  #employment-Info:target .active {
+    background-color: none;
+    color: var(--main); 
+ }
+/* =========  EMPLOYEE INFO SYTLE ===========*/ 
+.employee-info{
+    display: none;
+} 
+.employee-info .form-group {
+    padding: .9rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 4rem;
+    
+  }
+
+ .form-group > div {
+    flex: 1;
+  }
+
+ .form-group label {
+    text-align: left;
+    margin-bottom: 5px;
+    display: block; /* Display labels as block elements */
+  }
+
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group input[type="date"] {
+    width: 100%;
+    height: 70%;
+  }
+  .form-group input:focus {
+    outline: none; 
+    border-color: var(--main); 
+    box-shadow: 0 0 5px var(--main); 
+  }
+  .rw {
+    display: flex; 
+    align-items: center; 
+  }
+  .rw .row{
+    margin: 0 1rem;
+  }
+  /* Style for the label elements within the .row divs */
+  .rw .row .label {
+    flex: 1; 
+    margin-right: 10px; 
+  }
+
+  
+  .rw .row input[type="radio"] {
+    flex: 0; /* Prevent inputs from growing */
+  }
+
+
+  .form-group hr {
+    width: 100%;
+    border: 0.5px solid #ccc;
+    margin: 10px 0;
+  }
+
+  h3 {
+    text-align: left;
+  }
+
+  /* STYLE FOR EMPLOYMENT INFO */
+  .employment-info{
+    display: none;
+  }
+
+  .employment-info .form-group {
+    padding: .9rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 4rem;
+    
+  }
+
+  .employment-info .form-group > div {
+    flex: 1;
+  }
+
+  .employment-info .form-group label {
+    text-align: left;
+    margin-bottom: 5px;
+    display: block; /* Display labels as block elements */
+  }
+
+  .employment-info .form-group input[type="text"],
+  .employment-info .form-group input[type="date"],
+  .employment-info .form-group select {
+    
+    width: 100%;
+    height: 70%;
+  }
+  .employment-info .form-group input:focus,
+  .employment-info .form-group select:focus  {
+    outline: none; 
+    border-color: var(--main); 
+    box-shadow: 0 0 5px var(--main); 
+  }
+  .employment-info .form-group select {
+    width: 100%;
+    height: 2.6rem; /* Adjust the height as needed */
+    padding: 0.5rem; /* Add some padding to make the options more readable */
+  }
+  
+  /* Style for select option elements */
+  .employment-info .form-group select option {
+    background-color: #f0f0f0; /* Background color for options */
+    color: #333; /* Text color for options */
+    padding: 0.5rem; /* Padding for each option */
+  }
+   
+  .employee-info, .employment-info, .payroll-info, .deduction-info, .benefit-info {
+    display: none;
+    
+  }
+  
+  /* When the corresponding ID is targeted, display the div as block */
+  #employee-info:target, #employment-info:target, #payroll-info:target, #deduction-info:target, #benefit-info:target {
+    display: block;
+  }
+  /* =========  PAYROLL INFO SYTLE ===========*/ 
+  .payroll-info{
+    padding-top: 3rem;
+    display: none;
+  }
+  /* Center align the select element */
+.payroll-info .form-group1 {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px; /* Optional: Add some spacing between form groups */
+  }
+  
+  /* Style the label to be horizontally aligned with the select */
+  .payroll-info label {
+    font-size: 1.2rem;
+    text-align: right;
+    margin-right: 10px; 
+    width: 100px; 
+  }
+  
+  /* Style the select element */
+  .payroll-info select {
+    width: 300px; 
+    height: 40px; 
+  }
+  
+
+  /* Style for paycode */
+
+  .paycodeBx{
+    padding: 3.4rem;
+    
+}
+  .paycode .form-group {
+    padding: .9rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    gap: 4rem;
+    
+  }
+  .paycode .form-grou{
+    padding: .9rem 14rem .9rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  .paycode .form-grou label {
+    font-size: 1.2rem;
+    padding-left: 8rem;
+    text-align: center;
+    margin-bottom: 5px;
+    display: block; /* Display labels as block elements */
+  }
+
+  .paycode .form-group > div {
+    flex: 1;
+  }
+
+  .paycode .form-group label {
+    font-size: 1.2rem;
+    text-align: left;
+    margin-bottom: 5px;
+    display: block; /* Display labels as block elements */
+  }
+
+  .paycode .form-group input[type="text"]{
+    
+    width: 100%;
+    height: 80%;
+  }
+  .paycode .form-grou select{
+    width: 170%;
+    height: 7vh;
+  }
+  .paycode .form-group input:focus,
+  .paycode .form-group select:focus  {
+    outline: none; 
+    border-color: var(--main); 
+    box-shadow: 0 0 5px var(--main); 
+  }
+
+    /* DEDUCTION STYLING */
+    /* Style for the container div */
+div {
+  text-align: left; /* Center-align the content */
+}
+
+/* Style for the label */
+label {
+  display: block; /* Display the label as a block element */
+  margin-bottom: 5px;
+   font-size: 1.4rem;
+   
+}
+
+/* Style for the input */
+input#deductions {
+  width: 350px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  padding: 5px; /* Add padding for spacing inside the input */
+  font-size: 16px; /* Set the font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add rounded corners */
+}
+
+    .duduction-table {
+      display: none;
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+  /* Table header styles */
+  .duduction-table thead {
+      background-color: #f2f2f2;
+  }
+
+  /* Table row styles */
+  .duduction-table tr {
+      border-bottom: 1px solid #ddd;
+  }
+  .duduction-table tr:hover{
+    background-color: #E8E8E8;
+  }
+  /* Table cell styles */
+  .duduction-table td {
+      padding: 10px;
+      text-align: left;
+  }
+  #display {
+    display: none; /* Hide the div by default */
+    border: 1px solid #ccc; /* Add a border for the box */
+    padding: 10px; /* Add padding for spacing */
+    margin-top: 10px; /* Add margin to separate from the table */
+    background-color: #f7f7f7; /* Background color for the box */
+    max-width: 600px; /* Set a maximum width for the box */
+    overflow-wrap: break-word;
+  }
+  #display table {
+    border-collapse: collapse; /* Collapse table borders */
+    width: 100%; /* Make the table full-width */
+    margin-bottom: 10px; /* Add margin to separate from other content */
+}
+  #display table, #display th, #display td {
+    border: 1px solid #ccc; /* Add borders to cells and table */
+    padding: 5px; 
+}
+
+#display th, #display td {
+    text-align: left; /* Left-align content in cells */
+}
+/* BENEFIT STYLING */ 
+input#benefit {
+  width: 350px; /* Set the desired width */
+  height: 50px; /* Set the desired height */
+  padding: 5px; /* Add padding for spacing inside the input */
+  font-size: 16px; /* Set the font size */
+  border: 1px solid #ccc; /* Add a border */
+  border-radius: 4px; /* Add rounded corners */
+}
+.benefit-table {
+  display: none;
+  border-collapse: collapse;
+  width: 100%;
+  margin-bottom: 20px;
+} 
+.benefit-table thead {
+  background-color: #f2f2f2;
+}
+
+/* Table row styles */
+.benefit-table tr {
+  border-bottom: 1px solid #ddd;
+}
+.benefit-table tr:hover{
+background-color: #E8E8E8;
+}
+/* Table cell styles */
+.benefit-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+#benefit-display {
+  display: none; /* Hide the div by default */
+  border: 1px solid #ccc; /* Add a border for the box */
+  padding: 10px; /* Add padding for spacing */
+  margin-top: 10px; /* Add margin to separate from the table */
+  background-color: #f7f7f7; /* Background color for the box */
+  max-width: 600px; /* Set a maximum width for the box */
+  overflow-wrap: break-word;
+}
+#benefit-display table {
+  border-collapse: collapse; /* Collapse table borders */
+  width: 100%; /* Make the table full-width */
+  margin-bottom: 10px; /* Add margin to separate from other content */
+}
+#benefit-display table, #benefit-display th, #benefit-display td {
+  border: 1px solid #ccc; /* Add borders to cells and table */
+  padding: 5px; 
+}
+
+#benefit-display th, #benefit-display td {
+  text-align: left; /* Left-align content in cells */
+}

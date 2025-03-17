@@ -1,0 +1,118 @@
+
+/* Table styles */
+.deductionTable {
+  width: 100%;
+  margin-bottom: 20px;
+
+  margin-top: 0.9rem;
+}
+
+/* Table header styles */
+.deductionTable thead tr {
+  border-radius: 1rem;
+  padding-bottom: 5rem;
+  font-size: 1.5rem;
+}
+.deductionTable tbody tr:hover {
+  background-color: #ddd;
+}
+
+/* Table row styles */
+.deductionTable tbody tr {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.6rem;
+}
+
+/* Table cell styles */
+.deductionTable td {
+  padding: 10px;
+  text-align: left;
+}
+.deductionTable tbody td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd; /* Add a border to all sides */
+}
+.deductionHtml {
+  margin-left: 2rem;
+  margin-top: 2rem;
+  height: 60vh;
+  background-color: #fff;
+  width: 95%;
+  border-radius: 1.5rem;
+}
+.plusDeleteBtn {
+  padding: 2rem;
+}
+.form-container {
+  width: 30vw;
+}
+
+/* Style for form inputs */
+.form-input {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Style for select input */
+.form-select {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+h2 {
+  padding: 2rem;
+}
+.fixed-amount {
+  display: inline-block;
+  position: relative;
+}
+
+.fixed-amount input[type="text"] {
+  padding-left: 25px; /* Add space for the Naira sign */
+}
+
+.fixed-amount .naira-sign {
+  font-size: 2rem;
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Prevent interaction with the Naira sign */
+}
+.percentagePaycode input[type="text"],
+.percentagePaycode select {
+  height: 6vh;
+  width: 80%; /* Adjust the width as needed */
+  padding-right: 30px; /* Add space for the percentage sign */
+}
+
+.percentagePaycode .percentage-sign {
+  position: fixed;
+  right: 55%;
+  top: 71.5%;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+}
+.selectPaycode {
+  padding: 1rem;
+  width: 60%;
+  display: none;
+  background-color: #ccc;
+  border-radius: 0.6rem;
+}
+.selectPaycode tr {
+  padding: 1.5rem;
+}
+.selectPaycodeDisplay{
+  width: auto;
+  height: auto;
+  display: none;
+  padding: .5rem;
+  border: 2px solid #ccc;
+}

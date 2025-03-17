@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Performance Reviews</title>
+</head>
+<body>
+    <h1>Performance Reviews</h1>
+    <form method="POST" action="{{ url_for('hr.add_performance_review') }}">
+        <input type="text" name="employee_id" placeholder="Employee ID" required>
+        <input type="text" name="criterion" placeholder="Criterion" required>
+        <input type="number" name="score" min="1" max="10" required>
+        <button type="submit">Add Performance Review</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Criterion</th>
+                <th>Score</th>
+                <th>Review Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.employee_id }}</td>
+                <td>{{ review.criterion }}</td>
+                <td>{{ review.score }}</td>
+                <td>{{ review.review_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

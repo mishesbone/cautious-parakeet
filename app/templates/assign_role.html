@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assign Role</title>
+    <!-- Include your Bootstrap CSS link or CDN here -->
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Assign Role to User</h1>
+        <form method="POST" action="{{ url_for('admin.assign_role', user_id=user_id) }}">
+            <div class="form-group">
+                <label for="role_id">Select Role:</label>
+                <select class="form-control" name="role_id" id="role_id">
+                    {% for role in roles %}
+                        <option value="{{ role.id }}">{{ role.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Assign Role</button>
+        </form>
+        <a href="{{ url_for('admin.admin_dashboard', user_id=user_id) }}" class="btn btn-secondary mt-3">Back to Dashboard</a>
+    </div>
+    <!-- Include your Bootstrap JS scripts or CDNs here -->
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <title>terms and condition</title>
+</head>
+<body>
+    <header class="header">
+        <a href="{{url_for('auth.index')}}" class="logo">PAYROLL</a>
+        <!-- nav links -->
+        <nav class="navbar">
+            <a href="{{ url_for('auth.index') }}">home</a>
+            <a href="{{ url_for('main.about') }}">about</a>
+            <a href="{{ url_for('main.partners') }}">partners</a>
+            <a href="{{ url_for('main.pricing') }}">pricing</a>
+            <a href="{{ url_for('main.contact') }}">contact</a>
+        </nav>
+        <a href="{{url_for('auth.signin')}}" class="btn">sign in</a>
+    </header>
+    
+    <section class="terms-container">
+        <a href="{{url_for('auth.signup')}}"><i class='bx bx-left-arrow-circle'></i></a>
+        <h2> Ascentree Payroll Terms and Conditions</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, tenetur cum. Laboriosam debitis sit quisquam provident non aliquam natus veritatis voluptatibus dicta earum, expedita sunt officia voluptates eius quia cupiditate!</p>
+        <ol>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut aspernatur, architecto ducimus corrupti totam asperiores laudantium nisi expedita numquam labore eaque rerum consequatur quis. Tempora amet est vitae a vel.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis nemo minima magnam eum odit illo nulla harum aut error eveniet ipsam quia quidem maiores perspiciatis reiciendis autem ea, recusandae sed?</li>
+        </ol>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laborum, ex saepe! Officiis sed aliquid adipisci nam similique at rerum dolorem, cumque, commodi itaque sint doloremque possimus quas repellat! Tempora, deserunt?</p>
+        
+    </section>
+    <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>

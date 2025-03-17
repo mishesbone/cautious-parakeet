@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <!-- Include jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+  <div class="employeeCard">
+    <div class="flexbx">
+        <h3>Employee List</h3>
+        <div class="plusDeleteBtn">
+          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus"></i> <!-- Plus icon -->
+          </button>
+          <button type="button" class="btn btn-danger" id="delete">
+            <i class="fas fa-trash"></i> <!-- Delete icon -->
+          </button>
+        </div>
+    </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+              <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="employeebx">
+                <form action="{{ url_for('employee_card.add_employee', company_id=company_id,user_id=user_id) }}" method="POST">
+                  <div class="table1">
+                    <h5 class="td" id="E-info"><a href="#employee-info">Employee info</a></h5>
+                    <h5 class="td" id="employment-Info"><a href="#employment-info">Employment info</a></h5>
+                    <h5 class="td" id="payroll-Info"><a href="#payroll-info">Payroll info</a></h5>
+                    <h5 class="td" id="deduction"><a href="#deduction-info">Deduction</a></h5>
+                    <h5 class="td" id="benefits"><a href="#benefit-info">Benefits</a></h5>
+                  </div>
+
+                  <div class="employee-info" id="employee-info">
+                    <div class="form-group">
+                        <div>
+                          <label for="employeeName">Employee Name:</label>
+                          <input type="text" id="employeeName" name="name" required>
+                        </div>
+                        <div>
+                          <label for="Gender">Gender:</label>
+                          <div class="rw">
+                            <div class="row">
+                              <label class="label" for="male">Male:</label>
+                              <input type="radio" id="male" name="gender" value="Male">
+                            </div>
+                            <div class="row">
+                              <label class="label" for="female">Female:</label>
+                              <input type="radio" id="female" name="gender" value="Female">
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                          <label for="employeeID">Employee ID:</label>
+                          <input type="text" id="employeeID" name="employeeID" required>
+                        </div>
+                        <div>
+                          <label for="dob">Date of Birth:</label>
+                          <input type="date" id="dob" name="date_of_birth" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                          <label for="email">Employee Email:</label>
+                          <input type="email" id="email" name="email" required>
+                        </div>
+                        <div>
+                          <label for="phone">Phone Number:</label>
+                          <input type="tel" id="phone" name="phone_num" required>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="form-group">
+                        <div>
+                          <label for="address">Address:</label>
+                          <input type="text" id="address" name="address" required>
+                        </div>
+                        <div>
+                          <label for="city">City:</label>
+                          <input type="text" id="city" name="city" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                          <label for="postal">Postal Code:</label>
+                          <input type="text" id="postal" name="postal_code" required>
+                        </div>
+                        <div>
+                          <label for="country">Country:</label>
+                          <input type="text" id="country" name="country" required>
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <h3>Next Of Kin</h3>
+
+                    <div class="form-group">
+                        <div>
+                          <label for="nextOfKin">Next of Kin:</label>
+                          <input type="text" id="nextOfKin" name="next_of_kin" required>
+                        </div>
+                        <div>
+                          <label for="kinPhone">Phone Number:</label>
+                          <input type="tel" id="kinPhone" name="next_of_kin_phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div>
+                          <label for="relationship">Relationship:</label>
+                          <input type="text" id="relationship" name="next_of_kin_relationship" required>
+                        </div>
+                        <div>
+                          <label for="kinEmail">Email:</label>
+                          <input type="email" id="kinEmail" name="next_of_kin_email" required>
+                        </div>
+                    </div>
+                  </div>
+
+                  <div class="employment-info" id="employment-info">
+                    <div class="form-group">
+                   <!-- add_employee.html -->
+                    <div>
+                      <label for="department">Department:</label>
+                      <select id="department" name="department" required>
+                          <option value="" disabled selected>Select Department</option>
+                          {% for department in departments %}
+                              <option value="{{ department.id }}">{{ department.name }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                    <div>
+                      <label for="position">Department Description:</label>
+                      <select id="position" name="position">
+                        <option value="" disabled selected>Select Position</option>
+                          {% for position in positions %}
+                              <option value="{{ position.name }}">{{ position.description }}</option>
+                          {% endfor %}
+                      </select> 
+                  </div>
+
+                  </div>
+      
+                    <div class="form-group">
+                      <div>
+                        <label for="date-of-employment">Date of Employment:</label>
+                        <input type="date" id="date-of-employment" name="date_of_employment" required>
+                      </div>
+                    
+                      <div>
+                        <label for="last-Appraisal">Last Appraisal:</label>
+                        <input type="date" id="last-Appraisal" name="last_appraisal" required>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="payroll-info" id="payroll-info">
+                    <div class="form-group1">
+                      <div>
+                        <label for="grade">Grade:</label>
+                        <select id="grade" name="grade" required>
+                            <option value="" disabled selected>Select Grade</option>
+                            {% for grade in grades %}
+                                <option value="{{ grade.name }}">{{ grade.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    </div>
+                    <div class="form-group1">
+                      <div>
+                        <label for="level">Level:</label>
+                        <select id="level" name="level" required>
+                            <option value="" disabled selected>Select Level</option>
+                            {% for level in levels %}
+                                <option value="{{ level.name }}">{{ level.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    </div>
+                  </div>
+
+                  <!-- Rest of your form code for deductions and benefits -->
+
+                      <div class="deduction-info" id="deduction-info">
+                        <div>
+                          <label for="deduction">Deduction:</label>
+                          <input type="text" name="deductions" id="deductions" >
+                        </div>
+                        <table class="duduction-table another-class" id="deductionTable">
+                          <!-- Table Header -->
+                          <thead>
+                              <tr>
+                                <td class="table-cell"></td>
+                                  <td class="table-cell">Deduction</td>
+                                  <td class="table-cell">Code</td>
+                                  <td class="table-cell">Method of Coputation</td>
+                              </tr>
+                          </thead>
+                          <!-- Table Body -->
+                          <tbody>
+                            <tr>
+                              <td class="table-cell">
+                                  <input type="checkbox" class="checkbox" data-row="row1">
+                              </td>
+                              <td class="table-cell">Loan</td>
+                              <td class="table-cell">L2</td>
+                              <td class="table-cell">Percentage of Paycode</td>
+                          </tr>
+                          <tr>
+                              <td class="table-cell">
+                                  <input type="checkbox" class="checkbox" data-row="row2">
+                              </td>
+                              <td class="table-cell">Salary</td>
+                              <td class="table-cell">TR2</td>
+                              <td class="table-cell">Fixed amount</td>
+                          </tr>
+                          
+                          <!-- Checkbox row 3 -->
+                          <tr>
+                            <td class="table-cell">
+                              <input type="checkbox" class="checkbox" data-row="row3">
+                          </td>
+                              <td class="table-cell">Row 1, Cell 1</td>
+                              <td class="table-cell">Row 1, Cell 2</td>
+                              <td class="table-cell">Row 1, Cell 3</td>
+                          </tr>
+                          
+                              <!-- Add more rows as needed -->
+                          </tbody>
+                      </table>
+
+                      <div class="display" id="display">
+
+                      </div>
+
+                      </div>
+                      <div class="benefit-info" id="benefit-info">
+                        <div>
+                          <label for="deduction">Benefits</label>
+                          <input type="text" name="deductions" id="benefit">
+                        </div>
+                        <table class="benefit-table another-class" id="BenefitTable">
+                          <!-- Table Header -->
+                          <thead>
+                              <tr>
+                                  <td class="table-cell"></td>
+                                  <td class="table-cell">Benefits</td>
+                                  <td class="table-cell">Code</td>
+                                  <td class="table-cell">Method of Coputation</td>
+                              </tr>
+                          </thead>
+                          <!-- Table Body -->
+                          <tbody>
+                            <tr>
+                              <td class="table-cell">
+                                <input type="checkbox" class="checkboxs" data-row="row1">
+                            </td>
+                              <td class="table-cell">ITF</td>
+                              <td class="table-cell">L2</td>
+                              <td class="table-cell">Percentage of Paycode</td>
+                          </tr>
+                            <tr>
+                              <td class="table-cell">
+                                <input type="checkbox" class="checkboxs" data-row="row2">
+                            </td>
+                              <td class="table-cell">Benefit in Kind</td>
+                              <td class="table-cell">TR2</td>
+                              <td class="table-cell">Fixed amount</td>
+                          </tr>
+                          
+                          <!-- Checkbox row 3 -->
+                          <tr>
+                            <td class="table-cell">
+                              <input type="checkbox" class="checkboxs" data-row="row3">
+                          </td>
+                              <td class="table-cell">Pension employer contribution</td>
+                              <td class="table-cell">VB9</td>
+                              <td class="table-cell">Percentage of Paycode</td>
+                          </tr>
+                          
+                              <!-- Add more rows as needed -->
+                          </tbody>
+                      </table>
+                      <div class="benefit-display" id="benefit-display">
+
+                      </div>
+                      </div>
+                  
+                    </form>
+                      </div>
+                    </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+          <tr class="table-cell">
+            <td>ID</td>
+            <td>NAME</td>
+            <td>DEPARTMENT</td>
+            <td>POSITION</td>
+            <td>GRADE</td>
+            <td>LEVEL</td>
+
+
+          </tr>
+        </thead>
+        <tbody>
+          {% for employee in employees %}
+            <tr class="table-cell">
+              <td>{{ employee.id }}</td>
+              <td>{{ employee.name }}</td>
+              <td>{{ employee.department.name }}</td>
+              <td>{{ employee.position.name }}</td>
+              <td>{{employee.grade.name}}</td>
+              <td>{{employee.level.name}}</td>
+
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <script src="{{ url_for('static', filename='js/deductions.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/benefits.js') }}"></script>
+
+
+  <script src="{{ url_for('static', filename='js/employee_card.js') }}"></script>
+  <script>
+    $(document).ready(function () {
+      $("button[type='submit']").on("click", function () {
+        $("form").submit(); // Trigger the form submission
+      });
+    });
+  </script>
+</body>
+</html>

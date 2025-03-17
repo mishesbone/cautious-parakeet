@@ -1,0 +1,356 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    outline: none;
+    border: none;
+    transition: all .3s ease-out;
+    text-decoration: none;
+}
+section{
+  padding: 3rem 7%;
+}
+body{
+    overflow-x: hidden;
+    
+}
+
+/* Smooth Scroll */
+html{
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+}
+/* Header Section Start*/
+.header{
+    width: 100%;
+    background-color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding: 2rem 2rem 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    z-index: 100;
+
+}
+/* Logo and Navigation Bar */
+.header .logo{
+    color: #fff;
+    font-size: 3rem;
+    font-style: normal;
+    line-height: normal;
+    cursor: pointer;
+    font-weight: 400;
+    background-color: #146C94;
+    padding: .5rem 4%;
+}
+.header .navbar{
+    padding-top: .9rem;
+    padding-left: 20rem;
+}
+.header .navbar a{
+    font-size: 2rem;
+    color: #146C94;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    margin-left: 2.3rem;
+}
+.header .btn{
+    background: #19A7CE;
+    color: #FFF;
+    font-size: 20px;
+    font-weight: 400;
+     padding: 1rem;
+} 
+/* Home Page CSS Starts Here */
+.home {
+    background: linear-gradient(rgba(0, 0, 0, 0.507), rgba(0, 0, 0, 0.554)), url('img/bg.jpeg') no-repeat center center/cover; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.home .content {
+    text-align: center;
+    color: white;
+}
+  
+.home .content h1 {
+    font-size: 35px;
+    margin-bottom: 20px;
+    letter-spacing: .8rem;
+}
+.home .content p {
+    font-size: 20px;
+    padding-bottom: 8rem;
+    letter-spacing: 1.5rem;
+}
+  
+.home .content .btn {
+    padding: 10px 20px;
+    background-color: #19A7CE;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.home .content .btn:hover{
+    background: #146C94;
+    
+}
+/* SIGN UP.HTML STYLING */
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #146C94;
+  }
+  
+  .signup-form {
+    border-radius: 20px;
+    background: rgba(217, 217, 217, 0.605);
+    padding: 40px;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 530px;
+    width: 100%;
+  }
+  
+  .signup-form h2 {
+    text-align: left;
+    margin-bottom: 27px;
+    color: #444;
+    font-size: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group label {
+    font-size: 18px;
+    color: #44444496;
+    display: block;
+    
+  }
+  .form-group .flex a{
+    font-size: 13px;
+    display: flex;
+    color: #444;
+    text-decoration: underline;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #333;
+    background:none;
+  }
+  
+  .form-group input[type="checkbox"] {
+    display: flex;
+    width: auto;
+    margin-right: 5px;
+  }
+  
+  button[type="submit"] {
+    align-items: center;
+    display: block;
+    
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+   
+  
+  /* term and condition html STYLING */
+
+  .terms-container {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 7rem;
+   
+  }
+  .terms-container a i{
+    font-size: 3.4rem;
+    background-color: #19A7CE;
+    color: #fff;
+    padding: .4rem 2%;
+    margin-bottom: 3rem;
+    border-radius: .6rem;
+  }
+  .terms-container a i:hover{
+    opacity:.5;
+    font-weight: 400;
+    background-color: #007bff;
+  }
+  
+  .terms-container h2 {
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+
+  }
+  .terms-container p{
+    font-size: 1.8rem;
+    color: #444;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .terms-container ol {
+    list-style-type: decimal;
+    padding: 3rem;
+    line-height: 1.7;
+  }
+  .terms-container ol li{
+    font-size: 1.7rem;
+    text-transform: none;
+    color: #444;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+ 
+  /* company register  css STYLING */
+
+  .register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #146C94;
+  }
+  
+  .register-company-form {
+    border-radius: 20px;
+    background: rgba(217, 217, 217, 0.605);
+    padding: 40px;
+    
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    max-width: 530px;
+    width: 100%;
+  }
+  
+  
+  .register-company-form h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 2.2rem;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  textarea {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    padding: 5px;
+    resize: none;
+    font-family: inherit;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  button[type="submit"] {
+    padding: 10px;
+    background-color: #007bff;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  .numOfEmployee{
+    display: none;
+  }
+  .numOfEmployee .checkbox-label {
+    display: flex; /* Use flexbox to align items horizontally */
+    align-items: center; /* Vertically center the items (checkbox and text) */
+    margin-bottom: 10px; /* Add some spacing between each checkbox */
+  }
+
+  /* Style for the checkbox input */
+  .numOfEmployee .checkbox-label input[type="checkbox"] {
+    margin-right: 5px; /* Add some spacing between the checkbox and text */
+  }
+  .payment{
+    display: none;
+  }
+  .form-group .payment .paymentbx {
+    display: flex;
+    align-items: center;
+    padding-top: 2rem;
+  }
+
+  .rw {
+    display: flex;
+    align-items: center;
+  }
+
+  .btn0 {
+    width: 100px; 
+    height: 40px; 
+    background-color: rgba(0, 0, 255, 0.137);
+    color: white;
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    margin-right: 10px; 
+    border: none;
+    font-size: 1rem;
+  }
+
+  #file {
+    width: 100px; 
+    height: 40px; 
+    padding: 5px;
+    border: 1px solid #ccc; 
+  }
+
+
+.flash-messages {
+  list-style-type: none;
+  padding: 0;
+}
+
+.flash-message {
+  background-color: #f2dede; /* Red background color for danger messages */
+  color: #a94442; /* Text color for danger messages */
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ebccd1;
+  border-radius: 4px;
+}
+
+/* Add additional styles for success and other message types as needed */
+
+/* SIGN IN   CSS STYLING */

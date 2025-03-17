@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/department.css') }}">
+</head>
+<body>
+    <h2>Departments</h2>
+    <div class="departmentsHtml">
+        <div class="plusDeleteBtn">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                <i class="fas fa-plus"></i> <!-- Plus icon -->
+            </button>
+            
+        </div>
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Department Code</th>
+                        <th>Department Name</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="departmentTable">
+                    {% for department in departments %}
+                        <tr class="table-cell">
+                            <td>{{ department.id }}</td>
+                            <td>{{ department.name }}</td>
+                            <td>
+                                <!-- Edit Button -->
+                                <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#editModal{{ department.id }}">
+                                    <i class="fas fa-edit"></i> <!-- Edit icon -->
+                                </button>
+                            </td>
+                            <td>
+                                <!-- Delete Button -->
+                                <form method="POST" action="{{ url_for('departments.delete_department', company_id=company_id, user_id=user_id, department_id=department.id) }}" class="action-form">
+                                    <button type="submit" class="btn btn-danger">
+                                        <i class="fas fa-trash"></i> <!-- Delete icon -->
+                                    </button>
+                                </form>
+                            </td>
+                            <!-- Edit Department Modal -->
+<div class="modal fade" id="editModal{{ department.id }}" tabindex="-1" aria-labelledby="editModalLabel{{ department.id }}" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="editModalLabel{{ department.id }}">Edit Department</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ url_for('departments.edit_department', company_id=company_id, department_id=department.id) }}">
+                <div class="modal-body">
+                    <label for="editedName{{ department.id }}">Department Name:</label>
+                    <input type="text" id="editedName{{ department.id }}" name="edited_name" value="{{ department.name }}" class="form-input" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Add Department Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Department</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form method="POST" action="{{ url_for('departments.add_department', company_id=company_id, user_id=user_id) }}">
+                <div class="modal-body">
+                    <label for="newDepartmentName">Department Name:</label>
+                    <input type="text" id="newDepartmentName" name="name" class="form-input" required>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times"></i> Close
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Save changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+    <script src="{{ url_for('static', filename='js/department.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

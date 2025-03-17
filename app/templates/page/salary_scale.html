@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/salary_scale.css') }}">
+  </head>
+  <body>
+    <h1>Salary Scale</h1>
+    <div class="formDiv">
+      <form action="">
+        <div class="inputdiv">
+          <label for="Creategrade">Create Grade:</label>
+          <input type="text" id="createGrade" />
+        </div>
+
+        <div class="inputdiv">
+          <label for="Level">Level:</label>
+          <input type="text" id="createLevel" />
+        </div>
+        <div class="inputdiv">
+          <label for="Level">Paycode:</label>
+          <select id="create">
+            <option value="" disabled selected></option>
+            {% for pay_code in pay_codes %}
+                <option value="{{ pay_code.id }}">{{ pay_code.name }}</option>
+            {% endfor %}
+        </select>
+        
+        <div class="fixed-amount" style="display: none">
+            <!-- Naira sign -->
+            <span class="naira-sign">&#8358;</span>
+            <!-- Fixed amount input -->
+            <input
+              type="text"
+              id="fixedAmount"
+              name="fixedAmount"
+              placeholder="Enter Amount"
+            />
+        </div>
+        <div class="fixed-amoun" style="display: none">
+            <!-- Naira sign -->
+            <span class="naira-sign">&#8358;</span>
+            <!-- Fixed amount input -->
+            <input
+              type="text"
+              id="transport"
+              name="transport"
+              placeholder="Enter Transport Amount"
+            />
+        </div>
+        <div class="fixed-amou" style="display: none">
+            <!-- Naira sign -->
+            <span class="naira-sign">&#8358;</span>
+            <!-- Fixed amount input -->
+            <input
+              type="text"
+              id="transport"
+              name="transport"
+              placeholder="Enter Housing Amount"
+            />
+        </div>
+      </form>
+    </div>
+    <div class="salaryScale">
+        <table class="salaryScaleTable" id="salaryScaleTable">
+            <thead>
+              <tr>
+                <th>Grade</th>
+                <th>Level</th>
+                <th>Basic</th>
+                <th>Housing</th>
+                <th>Transport</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>G1</td>
+                    <td>L2</td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                </tr>
+                <tr>
+                    <td>G1</td>
+                    <td>L1</td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                </tr>
+                <tr>
+                    <td>G2</td>
+                    <td>L2</td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                </tr>
+                <tr>
+                    <td>G2</td>
+                    <td>L1</td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                    <td><span>NGN</span></td>
+                </tr>
+            </tbody>
+          </table>
+    </div>
+    <script src="{{ url_for('static', filename='js/salary_scale.js') }}"></script>
+
+  </body>
+</html>

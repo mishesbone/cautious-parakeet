@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Role</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.5.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Edit Role</h1>
+        <p>Edit the role details below:</p>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="mb-3">
+                <label for="role_name" class="form-label">Role Name</label>
+                {{ form.role_name(class="form-control") }}
+            </div>
+            <button type="submit" class="btn btn-primary">Update Role</button>
+        </form>
+
+        <a href="{{ url_for('admin.admin_dashboard', user_id=user.id) }}" class="btn btn-secondary mt-3">Back to Admin Dashboard</a>
+    </div>
+</body>
+</html>

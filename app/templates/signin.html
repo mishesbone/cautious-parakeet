@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+    <title>Sign In</title>
+</head>
+       
+<body class="signup">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flash">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+    <header class="header">
+        <a href="{{ url_for('auth.index') }}" class="logo">PAYROLL</a>
+        <!-- nav links -->
+        <nav class="navbar">
+            <a href="{{ url_for('auth.index') }}">home</a>
+            <a href="{{ url_for('main.about') }}">about</a>
+            <a href="{{ url_for('main.partners') }}">partners</a>
+            <a href="{{ url_for('main.pricing') }}">pricing</a>
+            <a href="{{ url_for('main.contact') }}">contact</a>
+        </nav>
+        {% if company_id is defined and company_id is not none %}
+        <a href="{{ url_for('dashboard.dashboard', company_id=company_id, user_id=current_user.id) }}" class="btn">Proceed to Company Dashboard</a>
+    {% else %}
+        <a href="{{ url_for('auth.signin') }}" class="btn">Sign In</a>
+    {% endif %}
+    
+    </header>
+
+    <div class="signup-form">
+        <h2>Sign In</h2>
+        <form action="{{ url_for('auth.signin') }}" method="POST" id="signin-form">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group form-check">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <label class="form-check-label" for="remember">Remember Me</label>
+            </div>
+            <div class="form-group">
+                <a href="{{ url_for('auth.forgot_password') }}">Forgot Password?</a>
+            </div>
+            <button type="submit">Sign in</button>
+        </form>
+    </div>
+    
+    </body>
+    <script type="text/javascript" >
+        
+
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("signin-form");
+
+    form.addEventListener("submit", function(event) {
+        // Prevent the default form submission
+        event.preventDefault();
+
+        // You can optionally add JavaScript validation here
+
+        // Define the URL for the form submission
+        const submitUrl = "{{ url_for('auth.signin') }}";
+
+        // Modify the form's action attribute to point to the appropriate URL
+        form.action = submitUrl;
+
+        // Submit the form with the modified action
+        form.submit();
+    });
+});
+
+    </script>
+
+</html>

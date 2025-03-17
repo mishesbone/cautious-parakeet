@@ -1,0 +1,28 @@
+#requirements.txt
+Flask==2.0.1
+Werkzeug==2.0.2
+Flask-SQLAlchemy==2.5.1
+SQLAlchemy==1.4.23
+WTForms==2.3.3
+# Use a version that is available
+Flask-Login==0.4.1  # Use a compatible version
+flask_migrate
+pymssql
+# Payment Processing
+stripe-11.6.0
+#Flask-Mail
+Flask-Mail==0.9.1
+flask_restful
+passlib >= 1.7.4 
+bcrypt==3.2.1  
+cryptography==35.0.0
+flask_bcrypt
+flask_wtf
+email_validator
+six
+waitress
+gunicorn
+pymysql
+
+wtforms-3.2.1 
+wtforms-sqlalchemy-0.4.2

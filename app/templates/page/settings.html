@@ -1,0 +1,66 @@
+<head>
+    <!-- Include Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    />
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+<div class="content-section">
+    <h2>Settings Content</h2>
+
+    {% if company_settings %}
+        <!-- Settings Table -->
+        <table class="table table-striped">
+            <thead>
+                <!-- Table headers for settings data -->
+                <tr>
+                    <th>Setting Name</th>
+                    <th>Setting Value</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Loop through settings data and create a row for each setting -->
+                {% for setting in company_settings %}
+                    <tr>
+                        <td>{{ setting.name }}</td>
+                        <td>{{ setting.value }}</td>
+                        <td>
+                            <!-- Edit Button - Opens a form to edit the setting -->
+                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editSettingModal{{ setting.id }}">
+                                Edit
+                            </button>
+
+                            <!-- Save Button - Submits the edited setting form -->
+                            <form method="POST" action="{{ url_for('save_setting', setting_id=setting.id) }}">
+                                <div class="modal fade" id="editSettingModal{{ setting.id }}" tabindex="-1" role="dialog" aria-labelledby="editSettingModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editSettingModalLabel">Edit Setting</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="text" name="edited_value" value="{{ setting.value }}" class="form-control" required>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No company settings found.</p>
+    {% endif %}
+</div>

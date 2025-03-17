@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Success</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <!-- Add your custom CSS if needed -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1 class="text-center">Sign Up Successful</h1>
+    </header>
+  
+    <main class="container mt-5">
+        <div>
+            <p>Your account has been created successfully!</p>
+            <p>Please check your email for a verification link to activate your account.</p>
+        </div>
+        <div class="d-flex justify-content-center">
+            <a href="{{ url_for('auth.signin') }}" class="btn btn-primary mx-2">Sign In</a>
+            <a href="{{ url_for('auth.register_company', user_id=user_id) }}" class="btn btn-secondary mx-2">Register Company</a>
+        </div>
+        <!-- You can provide additional information or instructions here -->
+    </main>
+
+    <footer>
+        <!-- Add footer content if needed -->
+    </footer>
+
+    <!-- Include Bootstrap JS and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

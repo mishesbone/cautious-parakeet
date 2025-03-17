@@ -1,0 +1,137 @@
+h1 {
+    padding: 1rem;
+  }
+  .formDiv {
+    width: 95%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-left: 2rem;
+    margin-top: 0.2rem;
+    height: 50vh;
+    border-radius: 1rem;
+    background-color: #fff;
+  }
+  form {
+    padding: 2rem;
+    width: 300px;
+  }
+  .inputdiv {
+    margin-top: 10px;
+  }
+  .inputdiv input{
+    width: 100%; /* Adjust the width as needed */
+    height: 45px; /* Adjust the height as needed */
+    padding: 5px; /* Add padding for spacing inside the input */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Add rounded corners */
+  }
+  .inputdiv select {
+    width: 100%; /* Adjust the width as needed */
+    height: 40px; /* Adjust the height as needed */
+    padding: 5px; /* Add padding for spacing inside the input */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 4px; /* Add rounded corners */
+  }
+  .salaryScale {
+    padding: 1rem;
+    width: 95%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    margin-left: 2rem;
+    margin-top: 0.2rem;
+    height: auto;
+    border-radius: 1rem;
+    background-color: #fff;
+  }
+  
+  .salaryScaleTable {
+border-collapse: collapse;
+width: 100%;
+}
+
+.salaryScaleTable th, .salaryScaleTable td {
+border: 1px solid #000; /* Add a border to all table cells */
+padding: 5px; /* Add padding for spacing inside the cells */
+text-align: center; /* Center-align the content in cells */
+}
+
+.salaryScaleTable th {
+background-color: #f2f2f2; /* Gray background for table headers */
+}
+
+/* Add space between rows and columns */
+.salaryScaleTable tr {
+margin: 5px;
+}
+
+/* Style the span elements inside td */
+.salaryScaleTable td span {
+display: block;
+padding: 5px;
+text-align: left;
+font-size: .8rem;
+}
+
+  .salaryScaleTable thead tr{
+    padding-left: 1rem;
+  }
+  .fixed-amount {
+    display: inline-block;
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .fixed-amount input[type="text"] {
+    padding-left: 25px; /* Add space for the Naira sign */
+    width: 100%;
+    height: 6vh;
+  }
+
+  .fixed-amount .naira-sign {
+    font-size: 2rem;
+    position: absolute;
+    left: 8px;
+    top: 62%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent interaction with the Naira sign */
+  }
+  .fixed-amoun {
+    display: inline-block;
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .fixed-amoun input[type="text"] {
+    padding-left: 25px; /* Add space for the Naira sign */
+    width: 100%;
+    height: 6vh;
+  }
+
+  .fixed-amoun .naira-sign {
+    font-size: 2rem;
+    position: absolute;
+    left: 8px;
+    top: 62%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent interaction with the Naira sign */
+  }
+  .fixed-amou {
+    display: inline-block;
+    position: relative;
+    padding-top: 1rem;
+  }
+
+  .fixed-amou input[type="text"] {
+    padding-left: 25px; /* Add space for the Naira sign */
+    width: 100%;
+    height: 6vh;
+  }
+
+  .fixed-amou .naira-sign {
+    font-size: 2rem;
+    position: absolute;
+    left: 8px;
+    top: 62%;
+    transform: translateY(-50%);
+    pointer-events: none; /* Prevent interaction with the Naira sign */
+  }

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                <div>
+                    <h1>Admin Dashboard</h1>
+                    <div class="mb-3">
+                        <a href="{{ url_for('dashboard.dashboard', company_id=company_id, user_id=current_user.id) }}" class="btn btn-secondary">Go Back to Company Dashboard</a>
+                    </div>
+                    
+                    <h2>Select Company</h2>
+                    <form method="POST" action="">
+                        {{ company_selection_form.hidden_tag() }}
+                        {{ company_selection_form.company.label }}
+                        {{ company_selection_form.company(class="form-control") }}
+                        {{ company_selection_form.submit(class="btn btn-primary") }}
+                    </form>
+                    
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>User Role Assignments</h2>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Role</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for assignment in user_role_assignments %}
+                                    <tr>
+                                        <td>{{ assignment.user_name }}</td>
+                                        <td>{{ assignment.role_name }}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#editRoleModal{{ assignment.user_id }}{{ assignment.role_id }}">
+                                                Edit Role
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteRoleModal{{ assignment.user_id }}{{ assignment.role_id }}">
+                                                Delete Role
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <!-- Edit Role Modal -->
+                                    <div class="modal fade" id="editRoleModal{{ assignment.user_id }}{{ assignment.role_id }}" tabindex="-1" role="dialog" aria-labelledby="editRoleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <!-- Modal content for editing role goes here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Delete Role Modal -->
+                                    <div class="modal fade" id="deleteRoleModal{{ assignment.user_id }}{{ assignment.role_id }}" tabindex="-1" role="dialog" aria-labelledby="deleteRoleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <!-- Modal content for deleting role goes here -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Role Assignment Form -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 d-flex align-items-center justify-content-center">
+                <form method="POST">
+                    {{ role_assignment_form.hidden_tag() }}
+                    <div class="form-group">
+                        <label for="user">Select User:</label>
+                        {{ role_assignment_form.user(class="form-control") }}
+                    </div>
+                    <div class="form-group">
+                        <label for="roles">Select Roles:</label>
+                        {{ role_assignment_form.roles(class="form-control") }}
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Assign Roles</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

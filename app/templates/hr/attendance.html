@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Attendance Management</title>
+</head>
+<body>
+    <h1>Attendance Records</h1>
+    <form method="POST" action="{{ url_for('hr.add_attendance') }}">
+        <input type="text" name="employee_id" placeholder="Employee ID" required>
+        <select name="status">
+            <option value="Present">Present</option>
+            <option value="Absent">Absent</option>
+        </select>
+        <button type="submit">Add Attendance</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Employee ID</th>
+                <th>Date</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+            <tr>
+                <td>{{ record.employee_id }}</td>
+                <td>{{ record.date }}</td>
+                <td>{{ record.status }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
